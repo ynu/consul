@@ -1,0 +1,8 @@
+{
+	"datacenter": "ynu0",
+	"data_dir": "/data/consul/data",
+	"server": true,
+	"cert_file": "",
+	"key_file": "",
+	"domain": "consul.ynu0."
+}
