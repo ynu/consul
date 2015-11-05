@@ -1,14 +1,17 @@
 {
-	"ui_dir": "/ui",
-	"server": true,
-	"dns_config": {
-		"allow_stale": false
-	},
-	"client_addr": "0.0.0.0",
-	"data_dir": "/data",
-	"leave_on_terminate": true,
-	"dns_config": {
-		"allow_stale": true,
-		"max_stale": "1s"
-	}
+        "ui_dir": "/ui",
+        "server": true,
+        "dns_config": {
+                "allow_stale": false
+        },
+        "client_addr": "0.0.0.0",
+        "bind_addr": "0.0.0.0",
+        "data_dir": "/data",
+        "leave_on_terminate": true,
+        "dns_config": {
+                "allow_stale": true,
+                "max_stale": "1s"
+        },
+        "bootstrap_expect": 1,
+        "datacenter": "ynu0"
 }
