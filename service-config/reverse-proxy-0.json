@@ -1,0 +1,15 @@
+{
+	"service": {
+		"name": "http-reverse-proxy",
+		"tags": ["fs-production"],
+		"address": "10.0.2.0",
+		"check": [
+			{
+				"name": "Get the default pages",
+				"interval": "20s",
+				"http": "http://10.0.2.0",
+				"timeout": "3s"
+			}
+		]
+	}
+}

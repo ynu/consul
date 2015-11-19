@@ -1,0 +1,7 @@
+{
+    "client_addr": "0.0.0.0",
+    "bind_addr": "202.203.209.90",
+    "data_dir": "/consul/data",
+	"node_name": "mongo-ynu0-2",
+	"datacenter": "ynu0"
+}
