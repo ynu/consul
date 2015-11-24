@@ -10,6 +10,8 @@ apt-get update
 # 安装 supervisor, python-software-properties
 apt-get install -y supervisor python-software-properties
 
+
+
 # 设置数据目录
 cd / && mkdir data
 cd /data && mkdir -p consul nginx
@@ -34,5 +36,10 @@ cd /etc/supervisor/conf.d
 echo [program:consul] >> consul.conf
 echo command=consul agent -config-dir=/data/consul/config >> consul.conf
 echo user=wlzx >> consul.conf
+
+# 添加nginx的PPA
+add-apt-repository ppa:nginx/stable
+apt-get update
+
 
 exit
