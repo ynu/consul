@@ -18,13 +18,13 @@ cd consul && mkdir -p data config
 
 # 安装 consul
 
-cd /tmp/
+cd /usr/bin
 
 wget https://releases.hashicorp.com/consul/0.5.2/consul_0.5.2_linux_amd64.zip
 
 unzip ./consul_0.5.2_linux_amd64.zip
 
-cp consul /usr/bin
+rm -f consul_0.5.2_linux_amd64.zip
 
 # 设置consul的supervisor配置文件
 cd /etc/supervisor/conf.d
