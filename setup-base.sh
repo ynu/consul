@@ -39,6 +39,11 @@ echo user=wlzx >> consul.conf
 
 # 添加nginx的PPA
 add-apt-repository ppa:nginx/stable
+
+
+# 添加haproxy的PPA
+add-apt-repository ppa:vbernat/haproxy-1.5
+
 apt-get update
 
 
