@@ -40,9 +40,13 @@ echo user=wlzx >> consul.conf
 # 添加nginx的PPA
 add-apt-repository ppa:nginx/stable
 
-
 # 添加haproxy的PPA
 add-apt-repository ppa:vbernat/haproxy-1.5
+
+# 添加rabbitmq的源
+cd /tmp
+wget https://www.rabbitmq.com/rabbitmq-signing-key-public.asc
+apt-key add rabbitmq-signing-key-public.asc
 
 apt-get update
 
