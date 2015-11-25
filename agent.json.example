@@ -1,7 +1,8 @@
 {
     "client_addr": "0.0.0.0",
-    "bind_addr": "202.203.209.90",
-    "data_dir": "/consul/data",
-	"node_name": "mongo-ynu0-2",
-	"datacenter": "ynu0"
+    "bind_addr": "0.0.0.0",
+    "data_dir": "/data/consul/data",
+	"node_name": "node-exapmle-0",
+	"datacenter": "ynu0",
+	"acl_token": ""
 }
