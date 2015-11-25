@@ -19,7 +19,6 @@ cd consul && mkdir -p data config
 
 cd /data/nginx && mkdir log
 
-chown -R wlzx /data
 
 # 安装 consul
 
@@ -31,11 +30,13 @@ yes | unzip ./consul_0.5.2_linux_amd64.zip
 
 rm -f consul_0.5.2_linux_amd64.zip
 
+
 # 设置consul的supervisor配置文件
 cd /etc/supervisor/conf.d
 echo [program:consul] >> consul.conf
 echo command=consul agent -config-dir=/data/consul/config >> consul.conf
-echo user=wlzx >> consul.conf
+
+
 
 # 添加nginx的PPA
 add-apt-repository ppa:nginx/stable
@@ -49,6 +50,9 @@ wget https://www.rabbitmq.com/rabbitmq-signing-key-public.asc
 apt-key add rabbitmq-signing-key-public.asc
 
 apt-get update
+
+# 重新加载supervisor的配置
+supervisorctl reload
 
 
 exit

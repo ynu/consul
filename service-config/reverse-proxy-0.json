@@ -3,7 +3,8 @@
 		"name": "http-reverse-proxy",
 		"tags": ["fs-production"],
 		"address": "10.0.2.0",
-		"check": [
+		"port": 80,
+		"checks": [
 			{
 				"name": "Get the default pages",
 				"interval": "20s",
