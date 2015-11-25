@@ -1,0 +1,17 @@
+{{range services}}
+{{if .Tags | contains "nginx"}}
+upstream {{.Name}} {
+        {{range service .Name}}
+        server {{.Address}}.{{.Port}};
+        {{end}}
+}
+{{$name := .Name}}
+server {
+        server_name {{range $key, $pairs := tree "web" | byKey}}{{if (eq $key $name)}}{{range $pairs}}{{if (eq "domain" .Key)}}{{.Value}}{{end}}{{end}}{{end}}{{end}};
+        location / {
+                proxy_pass http://{{$name}};
+        }
+}
+{{end}}
+{{end}}
+}
