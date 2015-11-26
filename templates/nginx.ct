@@ -8,7 +8,7 @@ upstream {{.Name}} {
 }
 {{$name := .Name}}
 server {
-        {{range $key, $pairs := tree "services" | byKey}}
+        {{range $key, $pairs := tree "web" | byKey}}
         	{{if (eq $key $name)}}
         		{{range $pairs}}
         			{{if (eq "domain" .Key)}}
