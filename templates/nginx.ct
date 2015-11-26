@@ -3,7 +3,7 @@
 {{if .Tags | contains "nginx"}}
 upstream {{.Name}} {
         {{range service .Name}}
-        server {{.Address}}.{{.Port}};
+        server {{.Address}}:{{.Port}};
         {{end}}
 }
 {{$name := .Name}}
