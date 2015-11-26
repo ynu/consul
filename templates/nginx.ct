@@ -1,4 +1,5 @@
-{{range services}}
+
+{{range services "@ynu0"}}
 {{if .Tags | contains "nginx"}}
 upstream {{.Name}} {
         {{range service .Name}}
@@ -7,11 +8,18 @@ upstream {{.Name}} {
 }
 {{$name := .Name}}
 server {
-        server_name {{range $key, $pairs := tree "web" | byKey}}{{if (eq $key $name)}}{{range $pairs}}{{if (eq "domain" .Key)}}{{.Value}}{{end}}{{end}}{{end}}{{end}};
+        {{range $key, $pairs := tree "web" | byKey}}
+        	{{if (eq $key $name)}}
+        		{{range $pairs}}
+        			{{if (eq "domain" .Key)}}
+        				server_name {{.Value}};
+        			{{end}}
+        		{{end}}
+    		{{end}}
+		{{end}}
         location / {
                 proxy_pass http://{{$name}};
         }
 }
 {{end}}
 {{end}}
-}
