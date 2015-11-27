@@ -46,6 +46,7 @@ add-apt-repository ppa:vbernat/haproxy-1.5
 
 # 添加rabbitmq的源
 cd /tmp
+`echo "deb http://www.rabbitmq.com/debian/ testing main" > /etc/apt/sources.list.d/rabbitmq.list`
 wget https://www.rabbitmq.com/rabbitmq-signing-key-public.asc
 apt-key add rabbitmq-signing-key-public.asc
 
