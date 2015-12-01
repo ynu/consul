@@ -13,7 +13,7 @@ rm -rf etcd-v2.2.2-linux-amd64
 
 # 设置etcd的supervisor配置文件
 cd /etc/supervisor/conf.d/
-echo '[program:etcd] >> etcd.conf'
-echo 'command=/usr/bin/etcd >> etcd.conf'
+echo '[program:etcd]' >> etcd.conf
+echo 'command=/usr/bin/etcd' >> etcd.conf
 
 supervisorctl reload
