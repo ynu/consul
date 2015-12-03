@@ -21,3 +21,4 @@ echo '[program:etcd]' >> etcd.conf
 echo 'command=/usr/bin/etcd -name etcd-0 -data-dir /data/etcd/data -advertise-client-urls=http://localhost:2379' >> etcd.conf
 
 supervisorctl reload
+
