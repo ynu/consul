@@ -1,25 +1,17 @@
+# updated on 2015/12/3 by na57
 
-{{range services "@ynu0"}}
-{{if .Tags | contains "nginx"}}
-upstream {{.Name}} {
-        {{range service .Name}}
-        server {{.Address}}:{{.Port}};
-        {{end}}
+{{range $key, $pairs := tree "nginx" | byKey}}
+upstream {{$key}} {
+    {{range $key2, $pairs2 := tree (printf "/nginx/%s/servers" $key)}}
+    server {{.Value}};
+    {{else}}
+    server 127.0.0.1:65535;
+    {{end}}
 }
-{{$name := .Name}}
 server {
-        {{range $key, $pairs := tree "services" | byKey}}
-        	{{if (eq $key $name)}}
-        		{{range $pairs}}
-        			{{if (eq "domain" .Key)}}
-        				server_name {{.Value}};
-        			{{end}}
-        		{{end}}
-    		{{end}}
-		{{end}}
-        location / {
-                proxy_pass http://{{$name}};
-        }
+    server_name {{key (printf "/nginx/%s/domain" $key)}};
+    location / {
+        proxy_pass http://{{$key}};
+    }
 }
-{{end}}
 {{end}}
