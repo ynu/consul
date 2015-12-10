@@ -1,0 +1,22 @@
+{
+	"service": {
+		"name": "dhcp",
+		"tags": [],
+		"address": "10.0.0.1",
+		"port": 67,
+		"checks": [
+			{
+				"name": "DHCP Configuration Check",
+				"interval": "3s",
+				"script": "dhcpd -t -cf /etc/dhcp/dhcpd.conf",
+				"timeout": "3s"
+			},
+			{
+				"name": "DHCP Process Check",
+                                "interval": "3s",
+				"script": "/data/consul/scripts/psc.sh dhcpd",
+                                "timeout": "3s"
+			}
+		]
+	}
+}
