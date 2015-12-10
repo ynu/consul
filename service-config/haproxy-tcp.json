@@ -1,0 +1,23 @@
+{
+	"service": {
+		"name": "haproxy-tcp",
+		"id": "haproxy-tcp-0",
+		"tags": [],
+		"address": "10.0.0.1",
+		"port": 65535,
+		"checks": [
+			{
+				"name": "HAProxy Configuration Check",
+				"interval": "3s",
+				"script": "haproxy -c -f /etc/haproxy/haproxy.cfg",
+				"timeout": "3s"
+			},
+			{
+				"name": "HAProxy Process Check",
+                "interval": "3s",
+				"script": "/data/consul/scripts/psc.sh haproxy",
+                "timeout": "3s"
+			}
+		]
+	}
+}
