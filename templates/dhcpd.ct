@@ -1,0 +1,21 @@
+# updated on 2015-12-3 by na57
+
+default-lease-time 6000;
+max-lease-time 72000;
+
+option subnet-mask 255.0.0.0;
+option broadcast-address 10.255.255.255;
+option routers 10.0.0.1;
+option domain-name-servers 202.203.208.33;
+subnet 10.0.0.0 netmask 255.0.0.0 {
+#range 10.10.0.1 10.10.0.255;
+}
+
+{{range $key, $pairs := tree "dhcp" | byKey}}
+{{$mac := key (printf "/dhcp/%s/mac" $key)}}
+{{$ip := key (printf "/dhcp/%s/ip" $key)}}
+host {{$key}} {
+  hardware ethernet {{$mac}};
+  fixed-address {{$ip}};
+}
+{{end}}
