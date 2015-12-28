@@ -25,3 +25,6 @@
 -  安装consul-template
 -  设置consul-template在supervisor中的配置文件
 -  设置基本的配置文件及模板文件
+
+### 安装MongoDB
+`sudo wget -q -O - "$@" https://raw.githubusercontent.com/ynu/consul/master/setup-mongodb.sh | bash`

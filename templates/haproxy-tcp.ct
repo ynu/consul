@@ -19,7 +19,7 @@ listen 	{{$key}}
 	bind *:{{$port}}
 	mode tcp
 	{{range $key2, $pairs2 := tree (printf "/haproxy-tcp/%s/servers" $key)}}
-	server {{.Key}} {{.Value}};
+	server real-server-{{$key}}-{{$key2}} {{.Value}} check
     {{else}}
     server blackhole 127.0.0.1:65535;
     {{end}}
