@@ -12,6 +12,7 @@ server {
     server_name {{key (printf "/nginx/%s/domain" $key)}};
     location / {
         proxy_pass http://{{$key}};
+        proxy_set_header Host $host;
     }
 }
 {{end}}
