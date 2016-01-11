@@ -12,15 +12,31 @@ defaults
 	log	global
 	mode	tcp
 	option	tcplog
+	timeout connect 5000ms
+	timeout client 30000ms
+	timeout server 30000ms
 
-{{range $key, $pairs := tree "haproxy-tcp" | byKey}}
-{{$port := key (printf "/haproxy-tcp/%s/port" $key)}}
-listen 	{{$key}}
-	bind *:{{$port}}
+{{range $i := loop 44900 45100}}
+{{$port := printf "%d" $i}}
+{{$ports := (tree "haproxy-tcp"|byKey)}}
+{{with (index $ports $port)}}
+{{$name := key (printf "/haproxy-tcp/%s/name" $port)}}
+listen 	{{$name}}-{{$i}}
+	bind *:{{$i}}
 	mode tcp
-	{{range $key2, $pairs2 := tree (printf "/haproxy-tcp/%s/servers" $key)}}
-	server real-server-{{$key}}-{{$key2}} {{.Value}} check
+	{{range $key2, $pairs2 := tree (printf "/haproxy-tcp/%d/servers" $i)}}
+	server real-server-{{$i}}-{{$key2}} {{.Value}} check
     {{else}}
-    server blackhole 127.0.0.1:65535;
+    {{range $key3, $pairs3 := tree "/honey-pots/servers"}}
+    server honey-{{$key3}} {{.Value}} check
     {{end}}
+    {{end}}
+{{else}}
+listen 	honey-{{$i}}
+	bind *:{{$i}}
+	mode tcp    
+    {{range $key3, $pairs3 := tree "/honey-pots/servers"}}
+    server honey-{{$key3}} {{.Value}} check
+    {{end}}
+{{end}}
 {{end}}
