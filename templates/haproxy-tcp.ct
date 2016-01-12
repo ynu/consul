@@ -13,10 +13,12 @@ defaults
 	mode	tcp
 	option	tcplog
 	timeout connect 5000ms
-	timeout client 30000ms
-	timeout server 30000ms
+	timeout client 3600000ms
+	timeout server 3600000ms
 
-{{range $i := loop 44900 45100}}
+{{$startPort := key "/honey-pots/start-port" | parseInt}}
+{{$endPort := key "/honey-pots/end-port" | parseInt}}
+{{range $i := loop $startPort $endPort}}
 {{$port := printf "%d" $i}}
 {{$ports := (tree "haproxy-tcp"|byKey)}}
 {{with (index $ports $port)}}
