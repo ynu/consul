@@ -10,6 +10,7 @@ upstream {{$key}} {
 }
 server {
     server_name {{key (printf "/nginx/%s/domain" $key)}};
+    {{key (printf "/nginx/%s/server_options" $key)}}
     location / {
         proxy_pass http://{{$key}};
         proxy_set_header Host $host;
