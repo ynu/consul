@@ -13,6 +13,7 @@ server {
     location / {
         proxy_pass http://{{$key}};
         proxy_set_header Host $host;
+        {{key (printf "/nginx/%s/location_options" $key)}}
     }
 }
 {{end}}
